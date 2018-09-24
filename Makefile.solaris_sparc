@@ -1,0 +1,22 @@
+# zbotdetect.so linux makefile
+
+CC = gcc
+CFLAGS = -O2 -ffast-math -w -DGAME_INCLUDE -DSOLARIS_SPARC
+#LDFLAGS=-ldl
+
+OUTFILES = g_main.o zb_ban.o zb_cmd.o zb_lrcon.o zb_msgqueue.o zb_util.o zb_init.o zb_zbot.o regerror.o regexp.o regsub.o
+
+zbotdetect.so: $(OUTFILES)
+	$(CC) $(OUTFILES) $(LDFLAGS) -shared -o zbotdetect.so
+
+g_main.o: g_main.c g_local.h q_shared.h game.h regexp.h regmagic.h
+regerror.o: regerror.c g_local.h q_shared.h game.h regexp.h regmagic.h
+regexp.o: regexp.c g_local.h q_shared.h game.h regexp.h regmagic.h
+regsub.o: regsub.c g_local.h q_shared.h game.h regexp.h regmagic.h
+zb_ban.o: zb_ban.c g_local.h q_shared.h game.h regexp.h regmagic.h
+zb_cmd.o: zb_cmd.c g_local.h q_shared.h game.h regexp.h regmagic.h
+zb_lrcon.o: zb_lrcon.c g_local.h q_shared.h game.h regexp.h regmagic.h
+zb_msgqueue.o: zb_msgqueue.c g_local.h q_shared.h game.h regexp.h regmagic.h
+zb_util.o: zb_util.c g_local.h q_shared.h game.h regexp.h regmagic.h
+zb_init.o: zb_init.c g_local.h q_shared.h game.h regexp.h regmagic.h
+zb_zbot.o: zb_zbot.c g_local.h q_shared.h game.h regexp.h regmagic.h
